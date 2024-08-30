@@ -1,0 +1,4 @@
+float:
+  name: "float"
+  value: 10.0
+  desc: "An example float"
