@@ -69,7 +69,7 @@ run: ## Execute the program
 
 ##==============================================================================
 #
-doc: ## Generate DPSMF documentation
+doc: ## Generate SIG documentation
 	doxygen Doxyfile
 
 ##==============================================================================
