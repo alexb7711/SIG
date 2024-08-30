@@ -5,7 +5,7 @@ from typing import TextIO, Self
 
 
 @dataclass
-class Publisher:
+class Topic:
     """!
     Defines the allowed parameters for a publisher object.
 
@@ -42,19 +42,18 @@ class Publisher:
         # Extract the data
 
         # Default values
-        Publisher.queue_size = 1
-        Publisher.lang = "python"
+        Topic.queue_size = 1
+        Topic.lang = "python"
 
         # Required fields
-        Publisher.name = yml["name"]
-        Publisher.publish = yml["publish"]
+        Topic.name = yml["name"]
 
         # Optional field
         if yml.get("queue_size"):
-            Publisher.rate = yml["queue_size"]
+            Topic.rate = yml["queue_size"]
         if yml.get("rate"):
-            Publisher.rate = yml["rate"]
+            Topic.rate = yml["rate"]
         if yml.get("desc"):
-            Publisher.desc = yml["desc"]
+            Topic.desc = yml["desc"]
 
-        return Publisher
+        return Topic
