@@ -26,7 +26,7 @@ import re
 
 import src.SIG.yaml.yaml_reader as yaml_reader
 from src.SIG.topic_generator.topic_generator import generate
-import src.SIG.topic_generator.types.topic as topic
+import src.SIG.topic_generator.topic as topic
 
 
 # =====================================================================================================================
