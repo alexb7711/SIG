@@ -20,7 +20,6 @@ BIN     = $(ENV_DIR)/bin
 else
 BIN     = $(ENV_DIR)/Scripts
 endif
-DEP     = dependencies
 PYTHON  = python
 
 ##==============================================================================
@@ -57,7 +56,7 @@ setup: ## Set up the project
 update: ## Update the virtual environment packages
 	@source $(BIN)/activate
 	@pip install --upgrade pip
-	@pip install -r $(DEP)
+	@pip install .
 
 ##==============================================================================
 #

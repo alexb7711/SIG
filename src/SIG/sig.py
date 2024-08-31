@@ -25,13 +25,9 @@ import os
 import re
 import yaml_reader
 
-import src.generators.publisher_generator as pg
-import src.generators.subscriber_generator as sg
-import src.generators.mock_generator as mg
+import src.topic_generator.topic_generator as tg
 
 from src.types.pub import Publisher
-from src.types.sub import Subscriber
-from src.types.mock import Mock
 
 
 # =====================================================================================================================
@@ -39,7 +35,7 @@ from src.types.mock import Mock
 
 
 class SIG:
-    """!Socket Interface Generation Class."""
+    """!@brief Socket Interface Generation Class."""
 
     ####################################################################################################################
     # PUBLIC
@@ -47,7 +43,7 @@ class SIG:
 
     ##==================================================================================================================
     #
-    def __init__(base_d: str = ".", out_d: str = ".") -> None:
+    def __init__(self, base_d: str = ".", out_d: str = ".") -> None:
         """! Initializes and creates the interface files given `base_d` and outputs them code to `out_d`
 
         @param base_d Base path to begin searching (Default: "."):
@@ -71,6 +67,10 @@ class SIG:
         ## @var _files
         # List of files topic YAML files found
         self._files = []
+
+        ## @var _data
+        # List of data within the topics
+        self._data = []
         # fmt: on
 
         return
@@ -115,8 +115,11 @@ class SIG:
 
         @return Dictionary of YAML file locations
         """
+        # Create empty list
+        files = []
+
         # Recursively search `base_d` for `[name].[yml,yaml]`
-        for path, _, f_names in os.walk(base_d):
+        for path, _, f_names in os.walk(self.base_d):
             # For all the files in `f_names`
             for f in f_names:
                 ## If a YAML file is found
@@ -133,11 +136,11 @@ class SIG:
     #
     def _generate_files(self):
         """!Generate the publisher, subscriber, and mock files"""
-        # Create a buffer of all the publisher
+        # Create a buffer of all the topics
         self._data = self._get_message_data("pub")
 
         # Call publisher generation function
-        pg.generate(_files["pub"], _data["pub"])
+        tg.generate(self._files, self._data)
 
         return
 
@@ -148,7 +151,7 @@ class SIG:
         message = []
 
         # Iterate through each message to be created
-        for fp in _files[message_type]:
+        for fp in self._files:
             # Read in the YAML file
             yml = yaml_reader.open_yaml(fp, "r")
 
