@@ -2,7 +2,7 @@
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Standard Lib
-import dpsmf
+import SIG.sig as sig
 import os
 import unittest
 
@@ -13,11 +13,11 @@ import unittest
 #
 
 
-class TestDPSMF(unittest.TestCase):
+class TestSIG(unittest.TestCase):
     # -------------------------------------------------------------------------------
     #
     def get_files():
-        d = dpsmf.DPSMF("./example", "None", True)
+        d = sig.SIG("./example", "None")
         d.run()
         return d
 
@@ -25,7 +25,7 @@ class TestDPSMF(unittest.TestCase):
     #
     def test_dir_search(self):
         # Find the files
-        d = TestDPSMF.get_files()
+        d = TestSIG.get_files()
         f = d.get_files()
 
         # Count the files
@@ -46,7 +46,7 @@ class TestDPSMF(unittest.TestCase):
     #
     def test_first_level_data_structure(self):
         # Find the files
-        d = TestDPSMF.get_files()
+        d = TestSIG.get_files()
         f = d.get_data()
 
         # Publisher

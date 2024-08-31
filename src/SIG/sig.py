@@ -23,11 +23,10 @@ is a subdirectory used to separate interfaces for each language.
 # Imports
 import os
 import re
-import yaml_reader
 
-import src.topic_generator.topic_generator as tg
-
-from src.types.pub import Publisher
+import src.SIG.yaml.yaml_reader as yaml_reader
+from src.SIG.topic_generator.topic_generator import generate
+import src.SIG.topic_generator.types.topic as topic
 
 
 # =====================================================================================================================
@@ -140,7 +139,7 @@ class SIG:
         self._data = self._get_message_data("pub")
 
         # Call publisher generation function
-        tg.generate(self._files, self._data)
+        generate(self._files, self._data)
 
         return
 
@@ -156,7 +155,7 @@ class SIG:
             yml = yaml_reader.open_yaml(fp, "r")
 
             # Save the data
-            message.append(Publisher.format_data(yml))
+            message.append(topic.Topic.format_data(yml))
 
         return message
 
