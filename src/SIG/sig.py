@@ -80,7 +80,7 @@ class SIG:
         """!Executes the SIG process."""
 
         # Search for YAML files
-        self._search_for_yaml()
+        self._files = self._search_for_yaml()
 
         # Generate the files
         self._generate_files()
@@ -96,10 +96,22 @@ class SIG:
         """!
         Returns a list of the stored YAML file location's
 
-        @return Dictionary of file paths separated by type.
+        @return List of file paths separated by type.
         Example: list[0] -> [path]
         """
         return self._files.copy()
+
+    # --------------------------------------------------------------------------
+    #
+    def get_data(self) -> list[str]:
+        """!
+        Returns a list of the stored variable data in each YAML topic file found
+
+        @return List of dictionaries of variable information contained in each
+        YAML topic file
+        Example: list[0] -> [dict]
+        """
+        return self._data.copy()
 
     ############################################################################
     # PRIVATE
@@ -134,9 +146,9 @@ class SIG:
     # --------------------------------------------------------------------------
     #
     def _generate_files(self):
-        """!Generate the publisher, subscriber, and mock files"""
+        """! @brief Generate the topic files."""
         # Create a buffer of all the topics
-        self._data = self._get_message_data("pub")
+        self._data = self._get_message_data()
 
         # Call publisher generation function
         generate(self._files, self._data)
@@ -145,9 +157,11 @@ class SIG:
 
     # --------------------------------------------------------------------------
     #
-    def _get_message_data(self, message_type: str) -> list[dict]:
+    def _get_message_data(self) -> list[dict]:
+        """! @brief Extract the variable data from the YAML file."""
         # Create empty buffer
         message = []
+        files_to_remove = []
 
         # Iterate through each message to be created
         for fp in self._files:
@@ -155,7 +169,23 @@ class SIG:
             yml = yaml_reader.open_yaml(fp, "r")
 
             # Save the data
-            message.append(topic.Topic.format_data(yml))
+            try:
+                message.append(topic.Topic.format_data(yml))
+            except Exception as e:
+                print(
+                    f"""
+                    START EXPCEPTION
+                    EXCEPTION: {e}
+                    !!!WARNING!!! IMPROPERLY FORMATTED FILE, REMOVING FROM THE LIST: {fp}
+                    END EXCEPTION
+                    """
+                )
+                files_to_remove.append(fp)
+                pass
+
+        # Remove the improperly formatted files
+        for rm in files_to_remove:
+            self._files.remove(rm)
 
         return message
 

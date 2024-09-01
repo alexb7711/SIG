@@ -6,7 +6,8 @@ the correct language.
 
 from src.SIG.topic_generator.topic import Topic
 
-# from src.SIG.topic_generator.generators.gen_python import pygen
+from src.SIG.topic_generator.generators.gen_python import genpy
+
 # from src.SIG.topic_generator.generators.gen_rust import rsgen
 # from src.SIG.topic_generator.generators.gen_c import cgen
 
@@ -24,9 +25,9 @@ def generate(fp: list[str], topic: list[Topic]):
     @return
     None
     """
-    # for p in topic:
-    #     if p.lang == "python":
-    #         pygen(fp, p)
+    for p in topic:
+        if p.lang == "python":
+            pygen(fp, p)
     #     elif p.lang == "rust":
     #         rsgen(fp, p)
     #     elif p.lang == "C++":

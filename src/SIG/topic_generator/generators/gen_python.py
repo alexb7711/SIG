@@ -1,10 +1,10 @@
-"""!@file gen_python.pyx
+"""!@file gen_python.py
 
 This module generates the Python interface.
 """
 
-from src.types.publisher import Publisher
+from src.SIG.topic_generator.topic import Topic
 
 
-def gen_python(fp: list[str], p: list[Publisher]):
+def genpy(fp: list[str], p: list[Topic]):
     return

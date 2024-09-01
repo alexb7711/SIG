@@ -48,7 +48,12 @@ class Topic:
         Topic.rate = None
 
         # Required fields
-        Topic.name = yml["name"]
+        try:
+            Topic.name = yml["name"]
+            Topic.protocol = yml["protocol"]
+            Topic.data = yml["data"]
+        except Exception:
+            raise
 
         # Optional field
         if yml.get("queue_size"):
@@ -58,6 +63,6 @@ class Topic:
         if yml.get("desc"):
             Topic.desc = yml["desc"]
         if yml.get("lang"):
-            Topic.lang = [x.lower() for x in yml["lang"]]
+            Topic.lang = list(map(lambda x: x.lower(), yml["lang"]))
 
         return Topic
