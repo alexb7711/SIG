@@ -1,4 +1,4 @@
-"""!@file publisher.py"""
+"""!@file topic.py"""
 
 from dataclasses import dataclass
 from typing import TextIO, Self
@@ -7,22 +7,23 @@ from typing import TextIO, Self
 @dataclass
 class Topic:
     """!
-    Defines the allowed parameters for a publisher object.
+    Defines the allowed parameters for a topic object.
 
-    @param name String defining the name of the publisher
+    @param name String defining the name of the topic
     @param lang String specifying the output language(s)
     @param data Defines the set of data types and data structures in the
-           publisher
+           topic
     @param queue_size Number of elements that may be buffered (Optional)
     @param rate Rate of published data. (Optional)
-    @param description Description of the publisher (Optional)
+    @param description Description of the topic (Optional)
     """
 
     # ==========================================================================
     # Data
     name: str
-    lang: str
-    publish: dict
+    lang: list[str]
+    protocol: str
+    data: dict
     queue_size: int
     rate: float
     desc: str
@@ -33,10 +34,10 @@ class Topic:
         """!
         Extracts the data from a YAML file and formats it in a data class.
 
-        @param: yml File handle to the publisher YAML file.
+        @param: yml File handle to the topic YAML file.
 
         @return
-        Data class containing the allowed parameters for publishers.
+        Data class containing the allowed parameters for topics.
         """
 
         # Extract the data
