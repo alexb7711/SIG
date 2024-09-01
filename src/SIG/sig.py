@@ -174,7 +174,7 @@ class SIG:
             except Exception as e:
                 print(
                     f"""
-                    START EXPCEPTION
+                    START EXCEPTION
                     EXCEPTION: {e}
                     !!!WARNING!!! IMPROPERLY FORMATTED FILE, REMOVING FROM THE LIST: {fp}
                     END EXCEPTION
