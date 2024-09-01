@@ -44,7 +44,8 @@ class Topic:
 
         # Default values
         Topic.queue_size = 1
-        Topic.lang = "python"
+        Topic.lang = ["python", "c", "rust"]
+        Topic.rate = None
 
         # Required fields
         Topic.name = yml["name"]
@@ -56,5 +57,7 @@ class Topic:
             Topic.rate = yml["rate"]
         if yml.get("desc"):
             Topic.desc = yml["desc"]
+        if yml.get("lang"):
+            Topic.desc = yml["lang"]
 
         return Topic
