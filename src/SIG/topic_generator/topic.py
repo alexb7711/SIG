@@ -58,6 +58,6 @@ class Topic:
         if yml.get("desc"):
             Topic.desc = yml["desc"]
         if yml.get("lang"):
-            Topic.desc = yml["lang"]
+            Topic.lang = [x.lower() for x in yml["lang"]]
 
         return Topic
