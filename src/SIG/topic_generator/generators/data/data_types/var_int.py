@@ -1,11 +1,9 @@
 """!@file var_float.py"""
 
-from dataclasses import dataclass
+from src.SIG.topic_generator.generators.data.data_types.variables import Variable
+from src.SIG.topic_generator.generators.data.data_types.variables import VariableTypes
 
-from variables import Variable
 
-
-@dataclass
 class VarInt(Variable):
     """!
     Defines the allowed parameters for an integer.
@@ -15,6 +13,24 @@ class VarInt(Variable):
     @param description Description of the variable
     """
 
-    name: str
-    value: int
-    desc: str
+    ####################################################################################################################
+    # PUBLIC
+    ####################################################################################################################
+
+    ##==================================================================================================================
+    #
+    def __init__(self, data: dict):
+        # Initialize variable
+        Variable.__init__(self, data)
+
+        # Subscribe to the current data type to `Variable`
+        if VariableTypes.int not in Variable.types:
+            Variable.types.append(VariableTypes.int)
+
+        # Populate the name and description
+        self.populate()
+
+        # Populate the data
+        self.value: int = data["value"]
+
+        return

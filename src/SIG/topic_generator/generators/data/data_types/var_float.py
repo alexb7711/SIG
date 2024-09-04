@@ -1,11 +1,9 @@
 """!@file var_float.py"""
 
-from dataclasses import dataclass
+from src.SIG.topic_generator.generators.data.data_types.variables import Variable
+from src.SIG.topic_generator.generators.data.data_types.variables import VariableTypes
 
-from variables import Variable
 
-
-@dataclass
 class VarFloat(Variable):
     """!
     Defines the allowed parameters for an float.
@@ -15,6 +13,20 @@ class VarFloat(Variable):
     @param description Description of the variable
     """
 
-    name: str
-    value: float
-    desc: str
+    ##==================================================================================================================
+    #
+    def __init__(self, data: dict):
+        # Initialize variable
+        Variable.__init__(self, data)
+
+        # Subscribe to the current data type to `Variable`
+        if VariableTypes.float not in Variable.types:
+            Variable.types.append(VariableTypes.float)
+
+        # Populate the name and description
+        self.populate()
+
+        # Populate the data
+        self.value = data["value"]
+
+        return

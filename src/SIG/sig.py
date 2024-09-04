@@ -25,8 +25,10 @@ import os
 import re
 
 import src.SIG.yaml.yaml_reader as yaml_reader
-from src.SIG.topic_generator.topic_generator import generate
 import src.SIG.topic_generator.topic as topic
+
+from src.SIG.topic_generator.topic_generator import generate
+from src.SIG.utility.exception_handler import print_exception_warning
 
 
 # =====================================================================================================================
@@ -77,7 +79,7 @@ class SIG:
     # --------------------------------------------------------------------------
     #
     def run(self) -> None:
-        """!Executes the SIG process."""
+        """! @brief Executes the SIG process."""
 
         # Search for YAML files
         self._files = self._search_for_yaml()
@@ -94,7 +96,7 @@ class SIG:
     #
     def get_files(self) -> list[str]:
         """!
-        Returns a list of the stored YAML file location's
+        @brief Returns a list of the stored YAML file location's
 
         @return List of file paths separated by type.
         Example: list[0] -> [path]
@@ -172,14 +174,10 @@ class SIG:
             try:
                 message.append(topic.Topic.format_data(yml))
             except Exception as e:
-                print(
-                    f"""
-                    START EXCEPTION
-                    EXCEPTION: {e}
-                    !!!WARNING!!! IMPROPERLY FORMATTED FILE, REMOVING FROM THE LIST: {fp}
-                    END EXCEPTION
-                    """
-                )
+                ## Print exception
+                print_exception_warning(e, None, fp)
+
+                ## Add to list of file paths to remove due to improper formatting
                 files_to_remove.append(fp)
                 pass
 

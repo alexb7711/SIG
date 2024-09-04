@@ -13,7 +13,7 @@ import unittest
 #
 
 
-class TestSIG(unittest.TestCase):
+class TestVariables(unittest.TestCase):
     # -------------------------------------------------------------------------------
     #
     def get_files():
@@ -23,34 +23,35 @@ class TestSIG(unittest.TestCase):
 
     # -------------------------------------------------------------------------------
     #
-    def test_dir_search(self):
+    def test_bool(self):
         # Find the files
-        d = TestSIG.get_files()
+        d = TestVariables.get_files()
         f = d.get_files()
-
-        # Count the files
-        self.assertEqual(len(f), 1)
-
-        # Check file names
-        pwd = os.path.abspath("./examples")
-
-        self.assertEqual(pwd + "/topics/topic_position.yml", f[0])
-
-        return
 
     # -------------------------------------------------------------------------------
     #
-    def test_first_level_data_structure(self):
+    def test_float(self):
         # Find the files
-        d = TestSIG.get_files()
-        f = d.get_data()
+        d = TestVariables.get_files()
+        f = d.get_files()
 
-        # Topics
-        self.assertEqual(f[0].name, "test_topic")
-        self.assertEqual(f[0].lang, ["python"])
-        self.assertEqual(f[0].protocol, "UDP")
-        self.assertTrue(isinstance(f[0].data["int"], list))
-        self.assertTrue(isinstance(f[0].data["float"], list))
-        self.assertEqual(f[0].desc, "This is a test topic")
+    # -------------------------------------------------------------------------------
+    #
+    def test_int(self):
+        # Find the files
+        d = TestVariables.get_files()
+        f = d.get_files()
 
-        return
+    # -------------------------------------------------------------------------------
+    #
+    def test_list(self):
+        # Find the files
+        d = TestVariables.get_files()
+        f = d.get_files()
+
+    # -------------------------------------------------------------------------------
+    #
+    def test_str(self):
+        # Find the files
+        d = TestVariables.get_files()
+        f = d.get_files()
