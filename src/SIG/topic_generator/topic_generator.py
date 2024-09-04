@@ -4,12 +4,10 @@ This module calls the appropriate generators to create the topic file with
 the correct language.
 """
 
+from src.SIG.topic_generator.generators.gen_c import GenerateC
+from src.SIG.topic_generator.generators.gen_python import GeneratePython
+from src.SIG.topic_generator.generators.gen_rust import GenerateRust
 from src.SIG.topic_generator.topic import Topic
-
-from src.SIG.topic_generator.generators.gen_python import genpy
-
-# from src.SIG.topic_generator.generators.gen_rust import rsgen
-# from src.SIG.topic_generator.generators.gen_c import cgen
 
 
 # ==============================================================================
@@ -25,14 +23,14 @@ def generate(fp: list[str], topic: list[Topic]):
     @return
     None
     """
-    for p in topic:
-        if p.lang == "python":
-            pygen(fp, p)
-    #     elif p.lang == "rust":
-    #         rsgen(fp, p)
-    #     elif p.lang == "C++":
-    #         cgen(fp, p)
-    #     elif p.lang == "C":
-    #         cgen(fp, p)
+
+    # For each language in the topic
+    for t in topic:
+        if t.lang == "python":
+            pygen(fp, t)
+        elif t.lang == "rust":
+            rsgen(fp, t)
+        elif t.lang == "c++" or t.lang == "c":
+            cgen(fp, t)
 
     return

@@ -2,9 +2,11 @@
 
 from dataclasses import dataclass
 
+from variables import Variable
+
 
 @dataclass
-class VarInt:
+class VarInt(Variable):
     """!
     Defines the allowed parameters for an integer.
 

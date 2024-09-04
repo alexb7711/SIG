@@ -1,20 +1,28 @@
-"""!@file gen_rust.py
+"""! @file variables.py"""
 
-This module generates the Rust interface.
-"""
+from dataclasses import dataclass
 
 from src.SIG.topic_generator.topic import Topic
 
 
-class GenerateRust:
+@dataclass
+class Variable:
+    """! @brief TODO"""
 
     ####################################################################################################################
     # PUBLIC
     ####################################################################################################################
 
     ##==================================================================================================================
+    # Variables
+
+    # https://stackoverflow.com/questions/69205854/iterating-over-dictionary-in-python-and-using-each-value
+    self.data: dict
+
+    ##==================================================================================================================
     #
-    def genrs(fp: list[str], p: list[Topic]):
+    def next(self) -> Self:
+        """! @brief Iterate to the next item in the variable list."""
         return
 
     ####################################################################################################################

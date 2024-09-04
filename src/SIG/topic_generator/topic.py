@@ -23,7 +23,7 @@ class Topic:
     name: str
     lang: list[str]
     protocol: str
-    data: dict
+    data: list[dict]
     queue_size: int
     rate: float
     desc: str

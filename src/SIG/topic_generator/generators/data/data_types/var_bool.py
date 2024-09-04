@@ -2,9 +2,11 @@
 
 from dataclasses import dataclass
 
+from variables import Variable
+
 
 @dataclass
-class VarBool:
+class VarBool(Variable):
     """!
     Defines the allowed parameters for an boolean.
 

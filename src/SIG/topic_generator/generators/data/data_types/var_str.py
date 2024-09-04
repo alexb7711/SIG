@@ -2,9 +2,11 @@
 
 from dataclasses import dataclass
 
+from variables import Variable
+
 
 @dataclass
-class VarStr:
+class VarStr(Variable):
     """!
     Defines the allowed parameters for an string.
 

@@ -2,9 +2,11 @@
 
 from dataclasses import dataclass
 
+from structures import Variable
+
 
 @dataclass
-class VarList:
+class VarList(Variable):
     """!
     Defines the allowed parameters for a list.
 
