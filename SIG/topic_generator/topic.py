@@ -118,7 +118,7 @@ class Topic:
                     # Otherwise the data type does not exist
                     else:
                         print_exception_warning(
-                            "", f"DID NOTE FIND THE VARIABLE {type}", None
+                            "", f"DID NOT FIND THE VARIABLE {type}", None
                         )
                 except Exception as e:
                     print_exception_warning(e, f"UNABLE TO FORMAT {type}", None)

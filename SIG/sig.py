@@ -160,7 +160,11 @@ class SIG:
     # --------------------------------------------------------------------------
     #
     def _get_message_data(self) -> list[dict]:
-        """! @brief Extract the variable data from the YAML file."""
+        """!
+        @brief Extract the variable data from the YAML file.
+
+        @return A list of Topic data objects (i.e. list of topics found in the project)
+        """
         # Create empty buffer
         message = []
         files_to_remove = []
