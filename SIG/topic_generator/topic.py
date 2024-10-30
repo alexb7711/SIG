@@ -92,7 +92,7 @@ class Topic:
     def _verify_and_extract_data(data: list[dict]) -> list[dict]:
         """! @brief Verifies the data field and formats the information into list of dictionaries
 
-        @param data:
+        @param data
 
         @returns
         """
@@ -107,6 +107,8 @@ class Topic:
                 ### Determine the variable type and create the object
                 try:
                     #### If the data type exists, add or append to the dictionary of variables
+                    # TODO: Need to update each type to Topic._app_or_append(type, Type(v), variables)
+                    #       to create a data object of the type `type`.
                     if type == VariableTypes.bool:
                         variables = Topic._add_or_append(type, v, variables)
                     elif type == VariableTypes.int:
@@ -121,7 +123,7 @@ class Topic:
                             "", f"DID NOT FIND THE VARIABLE {type}", None
                         )
                 except Exception as e:
-                    print_exception_warning(e, f"UNABLE TO FORMAT {type}", None)
+                    print_exception_warning(e, f"\nUNABLE TO FORMAT {type}", None)
 
         return variables
 

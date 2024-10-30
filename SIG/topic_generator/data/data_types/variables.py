@@ -14,7 +14,7 @@ class Variable:
 
     ##==================================================================================================================
     # Static Variables
-    types: list[str] = []
+    types: list[str] = [] #!< Track the tryps of topics that are found
 
     ##==================================================================================================================
     #
@@ -23,7 +23,7 @@ class Variable:
 
         self.name: str
         self.desc: str
-        self._data: dict = data
+        self._data: Any = data
         return
 
     ##==================================================================================================================
@@ -31,13 +31,13 @@ class Variable:
     def populate(self) -> None:
         """! @brief Populate the name and description of the variable."""
 
+        # Try to populate the variable data
         try:
-            # Try to populate the variable name
             self.name = self._data["name"]
-            self.desc = self._data["desc"]
 
-            # Try to populate the variable description
-            # if any("desc" in data)
+            if self._data["desc"]:
+                self.desc = self._data["desc"]
+
         except Exception:
             raise
 
@@ -53,8 +53,8 @@ class Variable:
 @dataclass
 class VariableTypes:
     """! @brief Dataclass to standardize the formatting of the variable types."""
-
     bool: str = "bool"
     int: str = "int"
     float: str = "float"
     str: str = "string"
+    return

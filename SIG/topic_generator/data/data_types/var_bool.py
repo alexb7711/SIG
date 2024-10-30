@@ -30,6 +30,10 @@ class VarBool(Variable):
         # Populate the name and description
         self.populate()
 
+        # TODO: Add check to ensure the data is either:
+        # - 0 or 1
+        # - True or False
+
         # Populate the data
         self.value: bool = data["value"]
 
