@@ -31,21 +31,18 @@ class Variable:
 
     ##==================================================================================================================
     #
-    def __init__(self, data: dict, t: type, vb: str):
+    def __init__(self, data: dict, t: type):
         # Define class variables
         self.name: str
         self.desc: str
         self._data: Any = data
         self._type: type = t
 
-        # Attempt to populate object
-        self.populate(vb)
-
         return
 
     ##==================================================================================================================
     #
-    def populate(self, vb: str):
+    def populate(self, vb: str, default: Any):
         """! @brief Populate the name and description of the variable."""
 
         # Ensure the data is the correct type
@@ -56,10 +53,11 @@ class Variable:
         try:
             ## Required data
             self.name = self._data["name"]
-            self.value: bool = self._data["value"]
 
             ## Optional Data
-            if self._data["desc"]:
+            if not self._data.get("value"):
+                self._data = default
+            if not self._data.get("desc"):
                 self.desc = self._data["desc"]
 
         except Exception:

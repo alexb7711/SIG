@@ -18,5 +18,10 @@ class VarBool(Variable):
     ##=================================================================================================================
     #
     def __init__(self, data: dict):
-        Variable.__init__(self, data, bool, VariableTypes.bool)
+        # Initialize the Variable object
+        Variable.__init__(self, data, bool)
+
+        # Attempt to populate object
+        self.populate(VariableTypes.bool, True)
+
         return
