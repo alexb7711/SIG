@@ -1,4 +1,15 @@
-"""!@file topic.py"""
+"""!@file topic.py
+
+This module is a data class that stores the metadata for each topic file found in the project.
+The metadata includes information such as:
+
+- Name of the topic
+- Required language output
+- Data types that are in the message
+- Amount of messages that are allowed to be queued
+- Rate of transmission of the message
+- Description of the message
+"""
 
 from dataclasses import dataclass
 from typing import TextIO, Self
@@ -70,7 +81,7 @@ class Topic:
         except Exception:
             raise
 
-        # Optional field
+        # Optional fields
         if yml.get("queue_size"):
             queue_size = yml["queue_size"]
         if yml.get("rate"):
@@ -110,7 +121,7 @@ class Topic:
                     # TODO: Need to update each type to Topic._app_or_append(type, Type(v), variables)
                     #       to create a data object of the type `type`.
                     if type == VariableTypes.bool:
-                        variables = Topic._add_or_append(type, v, variables)
+                        variables = Topic._add_or_append(type, VarBool(v), variables)
                     elif type == VariableTypes.int:
                         variables = Topic._add_or_append(type, v, variables)
                     elif type == VariableTypes.float:
