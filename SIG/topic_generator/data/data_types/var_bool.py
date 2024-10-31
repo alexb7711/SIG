@@ -1,7 +1,6 @@
 """!@file var_bool.py"""
 
-from src.SIG.topic_generator.generators.data.data_types.variables import Variable
-from src.SIG.topic_generator.generators.data.data_types.variables import VariableTypes
+from src.SIG.topic_generator.generators.data.data_types.variables import Variable, VariableTypes
 
 
 ##======================================================================================================================

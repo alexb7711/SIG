@@ -1,4 +1,4 @@
-name: "test_topic"
+name: "position_test_topic"
 lang: ["Python"]
 protocol: "UDP"
 data:
