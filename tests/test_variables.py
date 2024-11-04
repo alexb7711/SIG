@@ -17,16 +17,27 @@ class TestVariables(unittest.TestCase):
     # -------------------------------------------------------------------------------
     #
     def get_files():
-        d = sig.SIG("./examples", "./examples/build")
-        d.run()
-        return d
+        s = sig.SIG("./examples", "./examples/build")
+        s.run()
+        return s
 
     # -------------------------------------------------------------------------------
     #
     def test_bool(self):
         # Find the files
-        d = TestVariables.get_files()
-        f = d.get_files()
+        s = TestVariables.get_files()
+        d = d.get_data()
+
+        # Find the Boolean topic
+        t = None
+        for x in d:
+            if x.data.name == "test_bool_topic":
+                t = x
+                break
+
+        # Test the data in the topic `t`
+
+        return
 
     # -------------------------------------------------------------------------------
     #
@@ -34,6 +45,7 @@ class TestVariables(unittest.TestCase):
         # Find the files
         d = TestVariables.get_files()
         f = d.get_files()
+        return
 
     # -------------------------------------------------------------------------------
     #
@@ -41,6 +53,7 @@ class TestVariables(unittest.TestCase):
         # Find the files
         d = TestVariables.get_files()
         f = d.get_files()
+        return
 
     # -------------------------------------------------------------------------------
     #
@@ -48,6 +61,7 @@ class TestVariables(unittest.TestCase):
         # Find the files
         d = TestVariables.get_files()
         f = d.get_files()
+        return
 
     # -------------------------------------------------------------------------------
     #
@@ -55,3 +69,4 @@ class TestVariables(unittest.TestCase):
         # Find the files
         d = TestVariables.get_files()
         f = d.get_files()
+        return
