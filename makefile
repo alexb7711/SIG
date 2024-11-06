@@ -4,7 +4,7 @@
 
 ##==============================================================================
 # Directories
-SRC_D     = src
+SRC_D     = SIG
 TST_D     = tests
 ENV_DIR   = .venv
 ifneq ($(wildcard $(ENV_DIR)/bin/.),)
