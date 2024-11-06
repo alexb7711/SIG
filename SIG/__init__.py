@@ -1,1 +1,3 @@
-__all__ = ["sig"]
+from .sig import SIG
+
+__all__ = ["sig", "SIG"]
