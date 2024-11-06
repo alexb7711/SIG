@@ -36,6 +36,8 @@ class TestVariables(unittest.TestCase):
                 break
 
         # Test the data in the topic `t`
+        print(t)
+        self.assertTrue(False)
 
         return
 
