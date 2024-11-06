@@ -13,8 +13,8 @@ The metadata includes information such as:
 
 from dataclasses import dataclass
 from typing import TextIO, Self
-from SIG.topic_generator.generators.data.data_types.variables import Variable
-from SIG.topic_generator.generators.data.data_types.variables import VariableTypes
+from SIG.topic_generator.data.data_types.variables import Variable
+from SIG.topic_generator.data.data_types.variables import VariableTypes
 from SIG.utility.exception_handler import print_exception_warning
 
 from SIG.topic_generator.data.data_types.var_bool import VarBool
