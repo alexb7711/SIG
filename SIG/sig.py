@@ -24,11 +24,11 @@ is a subdirectory used to separate interfaces for each language.
 import os
 import re
 
-import src.SIG.yaml.yaml_reader as yaml_reader
-import src.SIG.topic_generator.topic as topic
+import SIG.yaml.yaml_reader as yaml_reader
+import SIG.topic_generator.topic as topic
 
-from src.SIG.topic_generator.topic_generator import generate
-from src.SIG.utility.exception_handler import print_exception_warning
+from SIG.topic_generator.topic_generator import generate
+from SIG.utility.exception_handler import print_exception_warning
 
 
 # =====================================================================================================================

@@ -4,10 +4,10 @@ This module calls the appropriate generators to create the topic file with
 the correct language.
 """
 
-from src.SIG.topic_generator.generators.gen_c import GenerateC
-from src.SIG.topic_generator.generators.gen_python import GeneratePython
-from src.SIG.topic_generator.generators.gen_rust import GenerateRust
-from src.SIG.topic_generator.topic import Topic
+from SIG.topic_generator.generators.gen_c import GenerateC
+from SIG.topic_generator.generators.gen_python import GeneratePython
+from SIG.topic_generator.generators.gen_rust import GenerateRust
+from SIG.topic_generator.topic import Topic
 
 
 # ==============================================================================

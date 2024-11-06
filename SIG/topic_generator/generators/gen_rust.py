@@ -3,7 +3,7 @@
 This module generates the Rust interface.
 """
 
-from src.SIG.topic_generator.topic import Topic
+from SIG.topic_generator.topic import Topic
 
 
 class GenerateRust:
