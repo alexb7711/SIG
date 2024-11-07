@@ -18,10 +18,10 @@ def open_yaml(fp: str, access: str) -> TextIO:
     - fh: File handle to the YAML file
     """
     try:
-        fh = open(fp, access)
-        yml = yaml.load(fh, Loader=yaml.Loader)
-        fh.close()
+        with open(fp, access) as fh:
+            yml = yaml.load(fh, Loader=yaml.Loader)
+            return yml
     except yaml.YAMLError as exc:
         print("ERROR - Unable to open YAML file: ", exc)
 
-    return yml
+    return None
