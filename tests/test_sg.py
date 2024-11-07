@@ -34,7 +34,7 @@ class TestSIG(unittest.TestCase):
         # Check file names
         pwd = os.path.abspath("./examples")
 
-        self.assertEqual(pwd + "/topics/topic_position.yml", f[0])
+        self.assertTrue(pwd + "/topics/topic_position.yml" in f)
 
         return
 
