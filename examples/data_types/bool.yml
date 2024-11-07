@@ -6,7 +6,7 @@ data:
     -
       name: "my_false"
       value: False
-      desc: "A description for this false bool"a
+      desc: "A description for this false bool"
     -
       name: "my_true"
       value: True
