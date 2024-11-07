@@ -1,7 +1,7 @@
 """!@file var_float.py"""
 
-from SIG.topic_generator.generators.data.data_types.variables import Variable
-from SIG.topic_generator.generators.data.data_types.variables import VariableTypes
+from SIG.topic_generator.data.data_types.variables import Variable
+from SIG.topic_generator.data.data_types.variables import VariableTypes
 
 
 class VarFloat(Variable):
