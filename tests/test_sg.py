@@ -45,12 +45,17 @@ class TestSIG(unittest.TestCase):
         d = TestSIG.get_files()
         f = d.get_data()
 
+        # Search for the position test topic
+        for x in f:
+            if x.name == "position_test_topic":
+                f = x
+
         # Topics
-        self.assertTrue(any(x.name == "position_test_topic" for x in f))
-        self.assertEqual(f[0].lang, ["python"])
-        self.assertEqual(f[0].protocol, "UDP")
-        self.assertTrue(isinstance(f[0].data["int"], list))
-        self.assertTrue(isinstance(f[0].data["float"], list))
-        self.assertEqual(f[0].desc, "This is a test topic")
+        self.assertTrue(f.name == "position_test_topic")
+        self.assertEqual(f.lang, ["python"])
+        self.assertEqual(f.protocol, "UDP")
+        self.assertTrue(isinstance(f.data["int"], list))
+        self.assertTrue(isinstance(f.data["float"], list))
+        self.assertEqual(f.desc, "This is a test topic")
 
         return
