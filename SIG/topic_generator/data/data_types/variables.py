@@ -54,10 +54,8 @@ class Variable:
             self.name = self._data["name"]
 
             ## Optional Data
-            if not self._data.get("value"):
-                self._data = default
-            if not self._data.get("desc"):
-                self.desc = self._data["desc"]
+            self._data = self._data.get("value", default):
+            self.desc = self._data.get("desc"):
 
         except Exception:
             raise
