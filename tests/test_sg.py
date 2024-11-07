@@ -29,7 +29,7 @@ class TestSIG(unittest.TestCase):
         f = d.get_files()
 
         # Count the files
-        self.assertEqual(len(f), 1)
+        self.assertEqual(len(f), 5)
 
         # Check file names
         pwd = os.path.abspath("./examples")
