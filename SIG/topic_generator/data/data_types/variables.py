@@ -30,18 +30,38 @@ class Variable:
 
     ##==================================================================================================================
     #
-    def __init__(self, data: dict, t: type):
+    def __init__(self, data: dict, t: type, vb: str, default: Any):
         # Define class variables
         self.name: str
         self.desc: str
-        self._data: Any = data
+        self._value: Any
         self._type: type = t
+
+        # Ensure the data is the correct type
+        if not isinstance(data["value"], self._type):
+            raise Exception(f"THE PROVIDED DATA IS NOT OF TYPE: {t}")
+
+        # Try to populate the variable data
+        try:
+            ## Required data
+            self.name = data["name"]
+
+            ## Optional Data
+            self._name = data.get("value", default)
+            self.desc = data.get("desc")
+
+        except Exception:
+            raise
+
+        # Subscribe the current data type to `Variable`
+        if vb not in Variable.types:
+            Variable.types.append(vb)
 
         return
 
     ##==================================================================================================================
     #
-    def populate(self, vb: str, default: Any):
+    def populate(self, value: Any, vb: str, default: Any):
         """! @brief Populate the name and description of the variable."""
 
         # Ensure the data is the correct type
