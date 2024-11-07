@@ -31,7 +31,7 @@ class TestVariables(unittest.TestCase):
         # Find the Boolean topic
         t = None
         for x in d:
-            if x.data.name == "test_bool_topic":
+            if x.name == "test_bool_topic":
                 t = x
                 break
 
