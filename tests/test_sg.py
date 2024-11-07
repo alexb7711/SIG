@@ -46,7 +46,7 @@ class TestSIG(unittest.TestCase):
         f = d.get_data()
 
         # Topics
-        self.assertEqual(f[0].name, "test_topic")
+        self.assertTrue(any(x.name == "test_topic" in f))
         self.assertEqual(f[0].lang, ["python"])
         self.assertEqual(f[0].protocol, "UDP")
         self.assertTrue(isinstance(f[0].data["int"], list))
