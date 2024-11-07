@@ -26,7 +26,7 @@ class TestVariables(unittest.TestCase):
     def test_bool(self):
         # Find the files
         s = TestVariables.get_files()
-        d = d.get_data()
+        d = s.get_data()
 
         # Find the Boolean topic
         t = None
