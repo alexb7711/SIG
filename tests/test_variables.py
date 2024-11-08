@@ -16,28 +16,40 @@ import unittest
 class TestVariables(unittest.TestCase):
     # -------------------------------------------------------------------------------
     #
-    def get_files():
+    def get_files(self):
         s = sig.SIG("./examples", "./examples/build")
         s.run()
         return s
 
     # -------------------------------------------------------------------------------
     #
-    def test_bool(self):
-        # Find the files
-        s = TestVariables.get_files()
-        d = s.get_data()
-
-        # Find the Boolean topic
+    def get_topic(self, topic: str, d: list):
         t = None
         for x in d:
-            if x.name == "test_bool_topic":
+            if x.name == topic:
                 t = x
                 break
 
+        return t
+
+    # -------------------------------------------------------------------------------
+    #
+    def test_bool(self):
+        # Find the files
+        s = self.get_files()
+        d = s.get_data()
+
+        # Find the Boolean topic
+        t = self.get_topic("test_bool_topic", d)
+
         # Test the data in the topic `t`
-        print(t)
-        self.assertTrue(False)
+        self.assertEqual(t.data["bool"][0].name, "my_false")
+        self.assertEqual(t.data["bool"][1].name, "my_true")
+        self.assertEqual(t.data["bool"][2].name, "my_bool")
+
+        self.assertEqual(t.data["bool"][0].get_value(), False)
+        self.assertEqual(t.data["bool"][1].get_value(), True)
+        self.assertEqual(t.data["bool"][2].get_value(), True)
 
         return
 
@@ -45,7 +57,7 @@ class TestVariables(unittest.TestCase):
     #
     def test_float(self):
         # Find the files
-        d = TestVariables.get_files()
+        d = self.get_files()
         f = d.get_files()
         return
 
@@ -53,7 +65,7 @@ class TestVariables(unittest.TestCase):
     #
     def test_int(self):
         # Find the files
-        d = TestVariables.get_files()
+        d = self.get_files()
         f = d.get_files()
         return
 
@@ -61,7 +73,7 @@ class TestVariables(unittest.TestCase):
     #
     def test_list(self):
         # Find the files
-        d = TestVariables.get_files()
+        d = self.get_files()
         f = d.get_files()
         return
 
@@ -69,6 +81,6 @@ class TestVariables(unittest.TestCase):
     #
     def test_str(self):
         # Find the files
-        d = TestVariables.get_files()
+        d = self.get_files()
         f = d.get_files()
         return

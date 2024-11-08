@@ -109,7 +109,7 @@ class Topic:
         """
 
         # Create emtpy dictionaries of found variables
-        variables = {}
+        variables: dict = {}
 
         # Iterate through each variable type in the topic
         for type, vars in data.items():

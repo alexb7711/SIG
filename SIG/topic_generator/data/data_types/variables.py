@@ -4,15 +4,17 @@ from typing import Any
 
 from dataclasses import dataclass
 
+
 ##======================================================================================================================
 #
 @dataclass
 class VariableTypes:
     """! @brief Dataclass to standardize the formatting of the variable types."""
+
     bool: str = "bool"
     int: str = "int"
     float: str = "float"
-    str: str = "string"
+    str: str = "str"
 
 
 ##======================================================================================================================
@@ -26,20 +28,16 @@ class Variable:
 
     ##==================================================================================================================
     # Static Variables
-    types: list[str] = [] #!< Track the types of variables found in the current topic
+    types: list[str] = []  #!< Track the types of variables found in the current topic
 
     ##==================================================================================================================
     #
-    def __init__(self, data: dict, t: type, vb: str, default: Any):
+    def __init__(self, data: dict, t: type, default: Any):
         # Define class variables
         self.name: str
         self.desc: str
         self._value: Any
         self._type: type = t
-
-        # Ensure the data is the correct type
-        if not isinstance(data["value"], self._type):
-            raise Exception(f"THE PROVIDED DATA IS NOT OF TYPE: {t}")
 
         # Try to populate the variable data
         try:
@@ -47,13 +45,19 @@ class Variable:
             self.name = data["name"]
 
             ## Optional Data
-            self._name = data.get("value", default)
+            self._value = data.get("value", default)
             self.desc = data.get("desc")
 
+            ## If a default value is provided, ensure the data is the correct type
+            if data.get("value") and not isinstance(data.get("value"), self._type):
+                raise Exception(f"THE PROVIDED DATA IS NOT OF TYPE: {t}")
+
         except Exception:
             raise
 
         # Subscribe the current data type to `Variable`
+        vb = Variable.str_from_type(t)
+
         if vb not in Variable.types:
             Variable.types.append(vb)
 
@@ -61,42 +65,39 @@ class Variable:
 
     ##==================================================================================================================
     #
-    def populate(self, value: Any, vb: str, default: Any):
-        """! @brief Populate the name and description of the variable."""
-
-        # Ensure the data is the correct type
-        if not isinstance(self._data["value"], self._type):
-            raise Exception("THE PROVIDED DATA IS NOT OF TYPE: BOOL")
-
-        # Try to populate the variable data
-        try:
-            ## Required data
-            self.name = self._data["name"]
-
-            ## Optional Data
-            self._data = self._data.get("value", default)
-            self.desc = self._data.get("desc")
-
-        except Exception:
-            raise
-
-        # Subscribe the current data type to `Variable`
-        if vb not in Variable.types:
-            Variable.types.append(vb)
-
-        return
-
-    ##==================================================================================================================
-    #
-    def get_data(self) -> Any:
+    def get_value(self) -> Any:
         """! @brief Return a copy of the variable data."""
-        return self._data.copy()
+        return self._value
 
     ##==================================================================================================================
     #
     def get_type(self) -> str:
         """! @brief Return a copy of the type of data as a string"""
         return self._type.copy()
+
+    ##==================================================================================================================
+    #
+    def str_from_type(t: type):
+        """!
+        @brief Given a topic, return the VariableType string representation.
+
+        @param t Variable type
+
+        @return VariableType string representation if the type is supported, None otherwise
+        """
+        vb = None
+
+        # Update vb with the `VariableType` representation if it is supported
+        if t == bool:
+            vb = VariableTypes.bool
+        elif t == int:
+            vb = VariableTypes.int
+        elif t == float:
+            vb = VariableTypes.float
+        elif t == str:
+            vb = VariableTypes.str
+
+        return vb
 
     ####################################################################################################################
     # PRIVATE
