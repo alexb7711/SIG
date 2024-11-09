@@ -1,7 +1,6 @@
 """!@file var_str.py"""
 
-from SIG.topic_generator.data.data_types.variables import Variable
-from SIG.topic_generator.data.data_types.variables import VariableTypes
+from SIG.topic_generator.data.variables import Variable, VariableTypes
 
 
 class VarStr(Variable):
