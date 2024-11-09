@@ -12,8 +12,10 @@ class VariableTypes:
     """! @brief Dataclass to standardize the formatting of the variable types."""
 
     bool: str = "bool"
-    int: str = "int"
+    dict: str = "dict"
     float: str = "float"
+    int: str = "int"
+    list: str = "list"
     str: str = "str"
 
 
@@ -73,11 +75,11 @@ class Variable:
     #
     def get_type(self) -> str:
         """! @brief Return a copy of the type of data as a string"""
-        return self._type.copy()
+        return self._type
 
     ##==================================================================================================================
     #
-    def str_from_type(t: type):
+    def str_from_type(t: type) -> str:
         """!
         @brief Given a topic, return the VariableType string representation.
 
@@ -96,6 +98,38 @@ class Variable:
             vb = VariableTypes.float
         elif t == str:
             vb = VariableTypes.str
+        elif t == list:
+            vb = VariableTypes.list
+        elif t == dict:
+            vb = VariableTypes.dict
+
+        return vb
+
+    ##==================================================================================================================
+    #
+    def type_from_str(t: str) -> type:
+        """!
+        @brief Given a topic, return the VariableType type representation.
+
+        @param t Variable type as string
+
+        @return VariableType type representation if the type is supported, None otherwise
+        """
+        vb = None
+
+        # Update vb with the `VariableType` representation if it is supported
+        if t == VariableTypes.bool:
+            vb = bool
+        elif t == VariableTypes.int:
+            vb = int
+        elif t == VariableTypes.float:
+            vb = float
+        elif t == VariableTypes.str:
+            vb = str
+        elif t == VariableTypes.list:
+            vb = list
+        elif t == VariableTypes.dict:
+            vb = dict
 
         return vb
 

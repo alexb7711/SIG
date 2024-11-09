@@ -17,6 +17,7 @@ from typing import Self, TextIO
 from SIG.topic_generator.data.var_bool import VarBool
 from SIG.topic_generator.data.var_float import VarFloat
 from SIG.topic_generator.data.var_int import VarInt
+from SIG.topic_generator.data.var_list import VarList
 from SIG.topic_generator.data.var_str import VarStr
 from SIG.topic_generator.data.variables import Variable, VariableTypes
 from SIG.utility.exception_handler import print_exception_warning
@@ -117,8 +118,6 @@ class Topic:
                 ### Determine the variable type and create the object
                 try:
                     #### If the data type exists, add or append to the dictionary of variables
-                    # TODO: Need to update each type to Topic._app_or_append(type, Type(v), variables)
-                    #       to create a data object of the type `type`.
                     if type == VariableTypes.bool:
                         variables = Topic._add_or_append(type, VarBool(v), variables)
                     elif type == VariableTypes.int:
@@ -127,6 +126,10 @@ class Topic:
                         variables = Topic._add_or_append(type, VarFloat(v), variables)
                     elif type == VariableTypes.str:
                         variables = Topic._add_or_append(type, VarStr(v), variables)
+                    elif type == VariableTypes.list:
+                        variables = Topic._add_or_append(type, VarList(v), variables)
+                    # elif type == VariableTypes.dict:
+                    #     variables = Topic._add_or_append(type, VarStr(v), variables)
                     # Otherwise the data type does not exist
                     else:
                         print_exception_warning(

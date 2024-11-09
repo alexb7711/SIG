@@ -123,3 +123,38 @@ class TestVariables(unittest.TestCase):
         self.assertEqual(len(t.data["str"]), 3)
 
         return
+
+    # -------------------------------------------------------------------------------
+    #
+    def test_list(self):
+        # Find the files
+        s = self.get_files()
+        d = s.get_data()
+
+        # Find the String topic
+        t = self.get_topic("test_list_topic", d)
+
+        # Test the data in the topic `t`
+        self.assertEqual(t.data["list"][0].name, "list")
+        self.assertEqual(t.data["list"][1].name, "list1")
+        self.assertEqual(t.data["list"][2].name, "list2")
+
+        self.assertEqual(t.data["list"][0].get_type(), list)
+        self.assertEqual(t.data["list"][1].get_type(), list)
+        self.assertEqual(t.data["list"][2].get_type(), list)
+
+        self.assertEqual(t.data["list"][0].list_type, int)
+        self.assertEqual(t.data["list"][1].list_type, float)
+        self.assertEqual(t.data["list"][2].list_type, str)
+
+        self.assertEqual(t.data["list"][0].get_value(), [1, 2, 3])
+        self.assertEqual(t.data["list"][1].get_value(), [3.0, 2.0, 1.0])
+        self.assertEqual(t.data["list"][2].get_value(), [])
+
+        self.assertEqual(t.data["list"][0].desc, "A list of integers")
+        self.assertEqual(t.data["list"][1].desc, None)
+        self.assertEqual(t.data["list"][2].desc, None)
+
+        self.assertEqual(len(t.data["list"]), 3)
+
+        return

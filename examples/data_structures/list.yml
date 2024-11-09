@@ -1,5 +1,0 @@
-list:
-  name: "list"
-  type: int # int, float, string, etc.
-  values: [1, 2, 3]
-  desc: A list of integers
