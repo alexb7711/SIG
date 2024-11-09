@@ -78,7 +78,7 @@ class Topic:
         try:
             name = yml["name"]
             protocol = yml["protocol"]
-            data = Topic._verify_and_extract_data(yml["data"])
+            data = Topic._verify_and_extract_data(name, yml["data"])
         except Exception:
             raise
 
@@ -101,10 +101,11 @@ class Topic:
 
     # ==================================================================================================================
     #
-    def _verify_and_extract_data(data: list[dict]) -> list[dict]:
+    def _verify_and_extract_data(name: str, data: list[dict]) -> list[dict]:
         """! @brief Verifies the data field and formats the information into list of dictionaries
 
-        @param data
+        @param name Name of the topic
+        @param data Dictionary of topic data/metadata
 
         @returns
         """
@@ -137,7 +138,9 @@ class Topic:
                             "", f"DID NOT FIND THE VARIABLE {type}", None
                         )
                 except Exception as e:
-                    print_exception_warning(e, f"\nUNABLE TO FORMAT {type}", None)
+                    print_exception_warning(
+                        e, f"\nUNABLE TO FORMAT {name}:{type}", None
+                    )
 
         return variables
 
