@@ -16,17 +16,7 @@ class VarFloat(Variable):
     ##==================================================================================================================
     #
     def __init__(self, data: dict):
-        # Initialize variable
-        Variable.__init__(self, data)
-
-        # Subscribe to the current data type to `Variable`
-        if VariableTypes.float not in Variable.types:
-            Variable.types.append(VariableTypes.float)
-
-        # Populate the name and description
-        self.populate()
-
-        # Populate the data
-        self.value = data["value"]
+        # Initialize the Variable object
+        Variable.__init__(self, data, float, 0.0)
 
         return

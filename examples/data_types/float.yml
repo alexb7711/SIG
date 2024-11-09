@@ -9,6 +9,9 @@ data:
     desc: "An example float"
   -
     name: "float2"
-    value: 5
+    value: 5.0
   -
     name: "float3"
+  -
+    name: "badfloat"
+    value: 1

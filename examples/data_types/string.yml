@@ -12,3 +12,6 @@ data:
       value: "Remove the description"
     -
       name: "my_string3"
+    -
+      name: "badstring"
+      value: 3

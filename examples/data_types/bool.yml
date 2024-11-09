@@ -12,3 +12,6 @@ data:
       value: True
     -
       name: "my_bool"
+    -
+      name: "bad_bool"
+      value: 3

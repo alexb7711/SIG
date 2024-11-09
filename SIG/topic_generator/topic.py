@@ -123,11 +123,11 @@ class Topic:
                     if type == VariableTypes.bool:
                         variables = Topic._add_or_append(type, VarBool(v), variables)
                     elif type == VariableTypes.int:
-                        variables = Topic._add_or_append(type, v, variables)
+                        variables = Topic._add_or_append(type, VarInt(v), variables)
                     elif type == VariableTypes.float:
-                        variables = Topic._add_or_append(type, v, variables)
+                        variables = Topic._add_or_append(type, VarFloat(v), variables)
                     elif type == VariableTypes.str:
-                        variables = Topic._add_or_append(type, v, variables)
+                        variables = Topic._add_or_append(type, VarStr(v), variables)
                     # Otherwise the data type does not exist
                     else:
                         print_exception_warning(

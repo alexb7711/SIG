@@ -12,3 +12,6 @@ data:
     value: 2
   -
     name: "int3"
+  -
+    name: "badint"
+    value: 1.0

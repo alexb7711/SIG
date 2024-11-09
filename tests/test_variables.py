@@ -51,36 +51,75 @@ class TestVariables(unittest.TestCase):
         self.assertEqual(t.data["bool"][1].get_value(), True)
         self.assertEqual(t.data["bool"][2].get_value(), True)
 
+        self.assertEqual(len(t.data["bool"]), 3)
+
         return
 
     # -------------------------------------------------------------------------------
     #
     def test_float(self):
         # Find the files
-        d = self.get_files()
-        f = d.get_files()
+        s = self.get_files()
+        d = s.get_data()
+
+        # Find the Float topic
+        t = self.get_topic("test_float_topic", d)
+
+        # Test the data in the topic `t`
+        self.assertEqual(t.data["float"][0].name, "float1")
+        self.assertEqual(t.data["float"][1].name, "float2")
+        self.assertEqual(t.data["float"][2].name, "float3")
+
+        self.assertEqual(t.data["float"][0].get_value(), 10.0)
+        self.assertEqual(t.data["float"][1].get_value(), 5.0)
+        self.assertEqual(t.data["float"][2].get_value(), 0.0)
+
+        self.assertEqual(len(t.data["float"]), 3)
+
         return
 
     # -------------------------------------------------------------------------------
     #
     def test_int(self):
         # Find the files
-        d = self.get_files()
-        f = d.get_files()
-        return
+        s = self.get_files()
+        d = s.get_data()
 
-    # -------------------------------------------------------------------------------
-    #
-    def test_list(self):
-        # Find the files
-        d = self.get_files()
-        f = d.get_files()
+        # Find the Int topic
+        t = self.get_topic("test_int_topic", d)
+
+        # Test the data in the topic `t`
+        self.assertEqual(t.data["int"][0].name, "int1")
+        self.assertEqual(t.data["int"][1].name, "int2")
+        self.assertEqual(t.data["int"][2].name, "int3")
+
+        self.assertEqual(t.data["int"][0].get_value(), 1)
+        self.assertEqual(t.data["int"][1].get_value(), 2)
+        self.assertEqual(t.data["int"][2].get_value(), 0)
+
+        self.assertEqual(len(t.data["int"]), 3)
+
         return
 
     # -------------------------------------------------------------------------------
     #
     def test_str(self):
         # Find the files
-        d = self.get_files()
-        f = d.get_files()
+        s = self.get_files()
+        d = s.get_data()
+
+        # Find the String topic
+        t = self.get_topic("test_string_topic", d)
+
+        # Test the data in the topic `t`
+        self.assertEqual(t.data["str"][0].name, "my_string1")
+        self.assertEqual(t.data["str"][1].name, "my_string2")
+        self.assertEqual(t.data["str"][2].name, "my_string3")
+
+        self.assertEqual(t.data["str"][0].get_value(), "My default string value")
+        self.assertEqual(t.data["str"][1].get_value(), "Remove the description")
+        self.assertEqual(t.data["str"][2].get_value(), "")
+
+        self.assertEqual(len(t.data["str"]), 3)
+
         return

@@ -21,16 +21,6 @@ class VarInt(Variable):
     #
     def __init__(self, data: dict):
         # Initialize variable
-        Variable.__init__(self, data)
-
-        # Subscribe to the current data type to `Variable`
-        if VariableTypes.int not in Variable.types:
-            Variable.types.append(VariableTypes.int)
-
-        # Populate the name and description
-        self.populate()
-
-        # Populate the data
-        self.value: int = data["value"]
+        Variable.__init__(self, data, int, 0)
 
         return

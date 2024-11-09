@@ -20,17 +20,7 @@ class VarStr(Variable):
     ##==================================================================================================================
     #
     def __init__(self, data: dict):
-        # Initialize variable
-        super().__init__(self, data)
-
-        # Subscribe to the current data type to `Variable`
-        if VariableTypes.str not in Variable.types:
-            Variable.types.append(VariableTypes.bool)
-
-        # Populate the name and description
-        self.populate()
-
-        # Populate the data
-        self.value: str = data["value"]
+        # Initialize the Variable object
+        Variable.__init__(self, data, str, "")
 
         return
