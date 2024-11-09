@@ -15,6 +15,7 @@ from dataclasses import dataclass
 from typing import Self, TextIO
 
 from SIG.topic_generator.data.var_bool import VarBool
+from SIG.topic_generator.data.var_dict import VarDict
 from SIG.topic_generator.data.var_float import VarFloat
 from SIG.topic_generator.data.var_int import VarInt
 from SIG.topic_generator.data.var_list import VarList
@@ -128,8 +129,8 @@ class Topic:
                         variables = Topic._add_or_append(type, VarStr(v), variables)
                     elif type == VariableTypes.list:
                         variables = Topic._add_or_append(type, VarList(v), variables)
-                    # elif type == VariableTypes.dict:
-                    #     variables = Topic._add_or_append(type, VarStr(v), variables)
+                    elif type == VariableTypes.dict:
+                        variables = Topic._add_or_append(type, VarDict(v), variables)
                     # Otherwise the data type does not exist
                     else:
                         print_exception_warning(

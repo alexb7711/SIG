@@ -158,3 +158,36 @@ class TestVariables(unittest.TestCase):
         self.assertEqual(len(t.data["list"]), 3)
 
         return
+
+    # -------------------------------------------------------------------------------
+    #
+    def test_dict(self):
+        # Find the files
+        s = self.get_files()
+        d = s.get_data()
+
+        # Find the String topic
+        t = self.get_topic("test_dict_topic", d)
+
+        # Test the data in the topic `t`
+        self.assertEqual(t.data["dict"][0].name, "dict")
+        self.assertEqual(t.data["dict"][1].name, "dict1")
+
+        self.assertEqual(t.data["dict"][0].get_type(), dict)
+        self.assertEqual(t.data["dict"][1].get_type(), dict)
+
+        self.assertEqual(
+            t.data["dict"][0].get_value(),
+            {"item1": "item1 value", "item2": "item2 value", "item3": "item3 value"},
+        )
+        self.assertEqual(
+            t.data["dict"][1].get_value(),
+            {"item1": 1, "item2": 2, "item3": 3},
+        )
+
+        self.assertEqual(t.data["dict"][0].desc, "A dictionary")
+        self.assertEqual(t.data["dict"][1].desc, None)
+
+        self.assertEqual(len(t.data["dict"]), 2)
+
+        return
