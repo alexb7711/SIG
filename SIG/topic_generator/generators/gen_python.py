@@ -3,10 +3,13 @@
 This module generates the Python interface.
 """
 
+from pathlib Import Path
+
 from SIG.topic_generator.topic import Topic
+from SIG.topic_generator.generators.generator import Generator
 
 
-class GeneratePython:
+class GeneratePython(Generator):
 
     ####################################################################################################################
     # PUBLIC
@@ -14,7 +17,14 @@ class GeneratePython:
 
     ##==================================================================================================================
     #
-    def genpy(fp: list[str], p: list[Topic]):
+    def __init__(self, f: Path, p: Topic):
+        super().__init__(f, p)
+        return
+
+
+    ##==================================================================================================================
+    #
+    def generate(f: Path, p: Topic):
         return
 
     ####################################################################################################################

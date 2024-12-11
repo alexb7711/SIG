@@ -1,7 +1,13 @@
 """! @file generator.py"""
 
+from abc import ABC
+from pathlib Import Path
 
-class Generator:
+from SIG.topic_generator.topic import Topic
+from SIG.topic_generator.generators.generator import Generator
+
+
+class Generator(ABC):
 
     ####################################################################################################################
     # PUBLIC
@@ -9,12 +15,15 @@ class Generator:
 
     ##==================================================================================================================
     #
-    def __init__(self):
+    def __init__(self, f: Path, p: Topic):
+        self.generate(f,p)
         return
 
     ##==================================================================================================================
     #
-    def
+    @abstractmethod
+    def generate(self):
+        pass
 
     ####################################################################################################################
     # PRIVATE

@@ -25,12 +25,12 @@ def generate(fp: list[str], topic: list[Topic]):
     """
 
     # For each language in the topic
-    for t in topic:
+    for f,t in zip(fp, topic):
         if t.lang == "python":
-            pygen(fp, t)
+            pygen(f, t)
         elif t.lang == "rust":
-            rsgen(fp, t)
+            rsgen(f, t)
         elif t.lang == "c++" or t.lang == "c":
-            cgen(fp, t)
+            cgen(f, t)
 
     return
