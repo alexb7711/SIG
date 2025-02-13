@@ -1,13 +1,14 @@
 """! @file generator.py"""
 
-from abc import ABC
-from pathlib Import Path
+import abc
+from pathlib import Path
 
 from SIG.topic_generator.topic import Topic
-from SIG.topic_generator.generators.generator import Generator
 
-
-class Generator(ABC):
+########################################################################################################################
+# ABSTRACT GENERATOR CLASS
+########################################################################################################################
+class Generator(abc.ABC):
 
     ####################################################################################################################
     # PUBLIC
@@ -21,7 +22,7 @@ class Generator(ABC):
 
     ##==================================================================================================================
     #
-    @abstractmethod
+    @abc.abstractmethod
     def generate(self):
         pass
 

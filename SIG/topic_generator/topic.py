@@ -14,14 +14,14 @@ The metadata includes information such as:
 from dataclasses import dataclass
 from typing import Self, TextIO
 
-from SIG.topic_generator.data.var_bool import VarBool
-from SIG.topic_generator.data.var_dict import VarDict
+from SIG.topic_generator.data.var_bool  import VarBool
+from SIG.topic_generator.data.var_dict  import VarDict
 from SIG.topic_generator.data.var_float import VarFloat
-from SIG.topic_generator.data.var_int import VarInt
-from SIG.topic_generator.data.var_list import VarList
-from SIG.topic_generator.data.var_str import VarStr
-from SIG.topic_generator.data.variables import Variable, VariableTypes
-from SIG.utility.exception_handler import print_exception_warning
+from SIG.topic_generator.data.var_int   import VarInt
+from SIG.topic_generator.data.var_list  import VarList
+from SIG.topic_generator.data.var_str   import VarStr
+from SIG.topic_generator.data.variables import VariableTypes
+from SIG.utility.exception_handler      import print_exception_warning
 
 
 @dataclass
@@ -90,7 +90,7 @@ class Topic:
         if yml.get("desc"):
             desc = yml["desc"]
         if yml.get("lang"):
-            lang = list(map(lambda x: x.lower(), yml["lang"]))
+            lang = (list(map(lambda x: x.lower(), yml["lang"])))
 
         # Create the Topic and return it
         return Topic(name, lang, protocol, data, queue_size, rate, desc)
@@ -110,7 +110,7 @@ class Topic:
         @returns
         """
 
-        # Create emtpy dictionaries of found variables
+        # Create empty dictionaries of found variables
         variables: dict = {}
 
         # Iterate through each variable type in the topic
@@ -149,9 +149,9 @@ class Topic:
     def _add_or_append(type: VariableTypes, v: dict, d: dict) -> dict:
         """! @brief Either create the entry or append to the list in the dictionary.
 
-        @param type
-        @param v
-        @param d
+        @param type Data class listing the supported variable types
+        @param v Dictionary containing the variable metadata
+        @param d Dictionary to add/append to based on the variable type
 
         @returns
         """

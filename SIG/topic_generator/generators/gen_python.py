@@ -3,7 +3,7 @@
 This module generates the Python interface.
 """
 
-from pathlib Import Path
+from pathlib import Path
 
 from SIG.topic_generator.topic import Topic
 from SIG.topic_generator.generators.generator import Generator

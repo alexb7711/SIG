@@ -4,10 +4,23 @@ This module calls the appropriate generators to create the topic file with
 the correct language.
 """
 
-from SIG.topic_generator.generators.gen_c import GenerateC
-from SIG.topic_generator.generators.gen_python import GeneratePython
-from SIG.topic_generator.generators.gen_rust import GenerateRust
-from SIG.topic_generator.topic import Topic
+from SIG.supported_languages import SUPPORTED_LANGUAGES
+
+from .generators.gen_c import GenerateC
+from .generators.gen_python import GeneratePython
+from .generators.gen_rust import GenerateRust
+from .topic import Topic
+
+########################################################################################################################
+# PRIVATE CONSTANTS
+########################################################################################################################
+
+_LANGUAGE_GENERATOR_MAP = {
+    SUPPORTED_LANGUAGES[0]: GeneratePython.generate,
+    SUPPORTED_LANGUAGES[1]: GenerateRust.generate,
+    SUPPORTED_LANGUAGES[2]: GenerateC.generate,
+    SUPPORTED_LANGUAGES[3]: GenerateC.generate,
+}
 
 
 # ==============================================================================
@@ -25,12 +38,12 @@ def generate(fp: list[str], topic: list[Topic]):
     """
 
     # For each language in the topic
-    for f,t in zip(fp, topic):
-        if t.lang == "python":
-            pygen(f, t)
-        elif t.lang == "rust":
-            rsgen(f, t)
-        elif t.lang == "c++" or t.lang == "c":
-            cgen(f, t)
+    for f, t in zip(fp, topic):
+        ## For each supported language
+        for i, l in enumerate(t.lang):
+            ### If the language listed is a part of the supported languages
+            if t.lang == SUPPORTED_LANGUAGES[i]:
+                #### Execute the generator associated with that language
+                _LANGUAGE_GENERATOR_MAP[SUPPORTED_LANGUAGES[i]](f, t)
 
     return

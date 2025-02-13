@@ -1,3 +1,3 @@
-from .sig import SIG
+from .core import SIG
 
 __all__ = ["sig", "SIG"]

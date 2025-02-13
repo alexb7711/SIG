@@ -16,13 +16,15 @@ The allowed languages are: Python, Rust, C/C++.
 
 After all of the files have been generated, a documentation file of the API
 generated will be created and placed in the `out_d/[language]` directory where `[language]`
-is a subdirectory used to separate interfaces for each language.
+is a sub-directory used to separate interfaces for each language.
 """
 
 # =====================================================================================================================
 # Imports
 import os
 import re
+
+from pathlib import Path
 
 import SIG.yaml.yaml_reader as yaml_reader
 import SIG.topic_generator.topic as topic
@@ -45,7 +47,9 @@ class SIG:
     ##==================================================================================================================
     #
     def __init__(self, base_d: str = ".", out_d: str = ".") -> None:
-        """! Initializes and creates the interface files given `base_d` and outputs them code to `out_d`
+        """!
+        @brief
+        Initializes and creates the interface files given `base_d` and outputs them code to `out_d`
 
         @param base_d Base path to begin searching (Default: "."):
         @param out_d Output directory for the documentation (Default: ".")
@@ -59,11 +63,11 @@ class SIG:
         # fmt: off
         ## @var base_d
         # Absolute path to the directory from which SIG begins searching
-        self.base_d = os.path.abspath(base_d)
+        self.base_d = Path(base_d).absolute()
 
         ## @var out_d
         # Absolute path to the directory where the API files and documentation will be output
-        self.out_d = os.path.abspath(out_d)
+        self.out_d = Path(out_d).absolute()
 
         ## @var _files
         # List of files topic YAML files found
@@ -74,6 +78,13 @@ class SIG:
         self._data = []
         # fmt: on
 
+        return
+
+    # --------------------------------------------------------------------------
+    #
+    def __call__(self):
+        """! @brief Executes the SIG process."""
+        self.run()
         return
 
     # --------------------------------------------------------------------------

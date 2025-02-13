@@ -3,7 +3,10 @@
 This module generates the C interface.
 """
 
+from pathlib import Path
+
 from SIG.topic_generator.topic import Topic
+
 
 class GenerateC:
 
@@ -13,7 +16,13 @@ class GenerateC:
 
     ##==================================================================================================================
     #
-    def cgen(fp: list[str], p: list[Topic]):
+    def __init__(self, f: Path, p: Topic):
+        super().__init__(f, p)
+        return
+
+    ##==================================================================================================================
+    #
+    def generate(f: Path, p: Topic):
         return
 
     ####################################################################################################################
